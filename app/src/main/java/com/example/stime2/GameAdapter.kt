@@ -18,6 +18,7 @@ class GameAdapter(private val games: List<MainActivity.GameData>) : RecyclerView
         holder.appid.text = "App ID: ${game.appid}"
         holder.last_week_rank.text = "Last Week Rank: ${game.last_week_rank}"
         holder.peak_in_game.text = "Peak In Game: ${game.peak_in_game}"
+        holder.name.text = "Nom: ${game.name}"
     }
 
     override fun getItemCount(): Int {
