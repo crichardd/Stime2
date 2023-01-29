@@ -28,6 +28,13 @@
             android:text="ID de l'application: "
             android:textSize="16sp"
             android:padding="5dp"/>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:textSize="16sp"
+            android:padding="5dp"/>
 
         <TextView
             android:id="@+id/last_week_rank"
