@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     data class SteamInfosData(val name: String, val type: String)
 
     // Définir la classe de données pour les jeux
-    data class GameData(var rank: Int, var appid: Int, var last_week_rank: Int, var peak_in_game: Int, var name: String)
+    data class GameData(var rank: Int, var appid: Int, var last_week_rank: Int, var peak_in_game: Int, var name: String, var header_image: String)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
