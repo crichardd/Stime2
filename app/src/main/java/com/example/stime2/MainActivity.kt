@@ -2,9 +2,11 @@ package com.example.stime2
 
 import GameAdapter
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import retrofit2.*
@@ -33,10 +35,17 @@ class MainActivity : AppCompatActivity() {
         fun getGameInfos(@Query("appids") appid: Int): Call<JsonObject>
     }
 
-    data class SteamInfosData(val name: String, val type: String)
-
     // Définir la classe de données pour les jeux
-    data class GameData(var rank: Int, var appid: Int, var last_week_rank: Int, var peak_in_game: Int, var name: String, var header_image: String)
+    data class GameData(
+        var rank: Int,
+        var appid: Int,
+        var last_week_rank: Int,
+        var peak_in_game: Int,
+        var name: String,
+        var publishers: String,
+        var final_formatted: String,
+        var header_image: String
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +91,23 @@ class MainActivity : AppCompatActivity() {
                                     val data = json?.getAsJsonObject(gameData.appid.toString())
                                     val gameInfos = data?.getAsJsonObject("data")
                                     val gameName = gameInfos?.get("name")?.asString ?: "N/A"
+                                    val gamePublishers = gameInfos?.getAsJsonArray("publishers")
+                                    val gameInfosPrice = gameInfos?.getAsJsonObject("price_overview")
+                                    val gamePrice = gameInfosPrice?.get("final_formatted")?.asString ?: "0€"
                                     gameData.name = gameName ?: "N/A"
+                                    gameData.final_formatted = gamePrice ?: "0€"
+
+                                    val publisherList = ArrayList<String>()
+                                    if (gamePublishers != null) {
+                                        for (i in 0 until gamePublishers.size()) {
+                                            publisherList.add(gamePublishers.get(i).asString)
+                                        }
+                                    }
+                                    val publisherString = publisherList.joinToString(", ")
+                                    gameData.publishers = publisherString
+                                    val gameImage = gameInfos?.get("header_image")?.asString ?: "N/A"
+                                    gameData.header_image = gameImage ?: "N/A"
+
                                     viewAdapter.notifyDataSetChanged()
                                 } else {
                                     // gérer les erreurs ici
@@ -103,6 +128,5 @@ class MainActivity : AppCompatActivity() {
                 // gérer les erreurs ici
             }
         })
-
     }
 }

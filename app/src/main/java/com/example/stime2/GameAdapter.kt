@@ -1,6 +1,11 @@
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.stime.GameViewHolder
 import com.example.stime2.MainActivity
 import com.example.stime2.R
@@ -14,11 +19,13 @@ class GameAdapter(private val games: List<MainActivity.GameData>) : RecyclerView
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = games[position]
-        holder.rank.text = "Rank: ${game.rank}"
-        holder.appid.text = "App ID: ${game.appid}"
-        holder.last_week_rank.text = "Last Week Rank: ${game.last_week_rank}"
-        holder.peak_in_game.text = "Peak In Game: ${game.peak_in_game}"
-        holder.name.text = "Nom: ${game.name}"
+        holder.rank.text = "Classement: ${game.rank}"
+        holder.name.text = "${game.name}"
+        holder.publishers.text = "Editeur: ${game.publishers}"
+        holder.final_formatted.text =" ${game.final_formatted}"
+        Glide.with(holder.itemView.context)
+            .load(game.header_image)
+            .into(holder.header_image)
     }
 
     override fun getItemCount(): Int {
