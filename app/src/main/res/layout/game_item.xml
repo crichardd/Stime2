@@ -5,52 +5,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3">
 
-        <TextView
-            android:id="@+id/rank"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Classement: "
-            android:textStyle="bold"
-            android:padding="5dp"/>
 
-        <TextView
-            android:id="@+id/appid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ID de l'application: "
-            android:textSize="16sp"
-            android:padding="5dp"/>
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ID de l\'application: "
-            android:textSize="16sp"
-            android:padding="5dp"/>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/last_week_rank"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Last Week Rank: "
-            android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/header_image"
+                android:layout_width="60dp"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp" />
 
-        <TextView
-            android:id="@+id/peak_in_game"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Peak In Game: "
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Classement :"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/header_image"
+                android:textSize="12sp"
+                android:fontFamily="@font/proxima_nova"/>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/header_image"
+                android:fontFamily="@font/proxima_nova"
+                android:layout_below="@+id/rank"
+                android:text="jeu"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/publishers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/header_image"
+                android:layout_below="@+id/name"
+                android:text="editeur"
+                android:textSize="12sp"
+                android:fontFamily="@font/proxima_nova"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/header_image"
+                android:layout_below="@+id/publishers"
+                android:layout_marginTop="10dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/proxima_nova"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/final_formatted"
+                android:layout_toRightOf="@+id/header_image"
+                android:layout_below="@+id/publishers"
+                android:layout_marginTop="10dp"
+                android:text="12€"
+                android:textSize="12sp"
+                android:fontFamily="@font/proxima_nova"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="@color/stime_blue"
+            android:textColor="@color/white"
+            android:fontFamily="@font/proxima_nova"
+            android:textSize="18sp"
+            android:text="@string/about"
+            android:textAllCaps="false"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
